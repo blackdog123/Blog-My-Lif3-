@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/form_posts.css'%}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/messages.css'%}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle%}My Lif3{% endblock %}</title>
+</head>
+
+
+ <!-- incio sin login -->
+{% if not request.user.is_authenticated %}  
+
+  {% include 'index_no_login.html' %}
+
+{% else %}
+
+<body class="body">
+  
+<!--Menu-->
+<header>
+  {% include 'menu.html' %}
+</header>
+
+{% include 'messages/success.html' %}
+
+<!-- Modal Publicación solo texto -->
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="modal_texto">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Escribir una Publicación</h5>
+        <button type="button" class="icon-cancel-1" id="btn_cerrar_modal_texto" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'subir_post.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Publicación Imagen -->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop2Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="modal_imagen">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Publicar una Imagen</h5>
+        <button type="button" class="icon-cancel-1" id="btn_cerrar_modal_imagen" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'subir_imagen.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="separador">
+  <br>
+</div>
+
+  <div class="container">
+
+    {% include 'users_index.html' %}
+
+    {% if request.user.is_authenticated %}
+
+    <div class="card" id="card_call_post">
+      <div class="card-body" id='card_call'>
+        <h5 class="card-title btn-group-lg" style="margin-top: 12px;"><a id="foto_autor_redirect" href="{% url 'perfil' request.user.username %}">
+          <img class="img-fluid" src="{{ request.user.profile.foto_perfil.url}}" id="foto_perfil_post" alt="foto_perfil">
+        </a>
+        <span>
+          <button class="btn btn-primary" id="call_post" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+            ¿ En que estás pensando, {{ request.user.username }} ?
+          </button>
+        </span>
+        </h5>
+        <hr >
+        <div class="btn-group" role="group" id="box_redirect_forms" aria-label="Basic example"> 
+          <button class="btn btn-primary" id="btn_redirect_forms" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Imagen <span class="icon-picture"></span></button>
+          <a href="{% url 'subir_video' %}" id="btn_redirect_forms" type="button" class="btn btn-primary" >Video <span class="icon-videocam-1"></span></a>
+        </div>
+      </div>
+    </div>
+
+    {% else %}
+
+    {% endif %}
+
+  <!-- post de usuarios seguidos -->
+    
+  {% load humanize %}
+  {% for post in posts %}
+    
+    {% if user not in post.user.profile.Followers and request.user.username != post.user.username %}
+
+   
+      {% else %}
+        <div class="card" id="box_post">
+          <div class="card-body">
+            <h5 class="card-title btn-group-lg">
+              <img class="img-fluid" src="{{ post.user.profile.foto_perfil.url}}" id="foto_perfil_post" alt="foto_perfil"> 
+
+             
+              {% if post.user.profile.tipo_verificacion == 'Verificado' %}
+
+                <a id="autor" href="{% url 'perfil' post.user.username %}">
+                {{post.user.username}}<i class="icon-ok-circle disabled" id="icon_verifique_post"></i>
+                <span>
+                <time data-time="#" id="tiempo" >
+                  <span class="icon-clock">
+
+                  </span>{{ post.fecha_creacion|naturaltime }}
+                </time>
+                </span>
+                </a>
+                
+          
+                {% if post.user.username == request.user.username %}
+                  <!-- Default dropstart button -->
+                  <div class="btn-group dropstart" style="float: right;">
+                    <button type="button" class="btn btn-secondary" id="btn_option_post" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="icon-cog-alt"></i>
+                    </button>
+                    <ul class="dropdown-menu" id="opciones_post_drop">
+                      <li><a class="dropdown-item" href="{% url 'editar_post' post.pk %}" id="btn_update"><span class="icon-edit-1"></span> Editar Post</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'eliminar_post' post.pk %}" id="btn_delete"><span class="icon-trash-2"></span> Eliminar Post</a></li>  
+                    </ul>
+                  </div>
+                {% else %}
+
+                {% endif%}
+
+                
+              {% else %}
+
+                <a id="autor" href="{% url 'perfil' post.user.username %}">
+                {{post.user.username}}<span>
+                <time data-time="#" id="tiempo" ><span class="icon-clock"></span>{{ post.fecha_creacion|naturaltime }}</time></span></a>
+              
+                {% if post.user.username == request.user.username %}
+                  <!-- Default dropstart button -->
+                  <div class="btn-group dropstart" style="float: right;">
+                    <button type="button" class="btn btn-secondary" id="btn_option_post" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="icon-cog-alt"></i>
+                    </button>
+                    <ul class="dropdown-menu" id="opciones_post_drop">
+                      <li><a class="dropdown-item" href="{% url 'editar_post' post.pk %}" id="btn_update"><span class="icon-edit-1"></span> Editar Post</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'eliminar_post' post.pk %}" id="btn_delete"><span class="icon-trash-2"></span> Eliminar Post</a></li>  
+                    </ul>
+                  </div>
+                {% else %}
+           
+                {% endif%}
+              
+                {% endif %}
+
+              
+            </h5>
+          </div>
+        <div class="container">
+          <p class="card-text" id="texto">{{post.texto}}</p>
+        </div>
+        {% if post.imagen %}
+        <td>
+          <a href="{{post.imagen.url}}">
+            <img  id="imagen_post" class="img-fluid" src="{{post.imagen.url}}">
+          </a>
+        </td>
+        {% elif post.video  %}
+        <video src="{{post.video.url}}" id="video" controls="" loop="" class="video-fluid">
+          <source src="{{post.video.url}}" type="video/mp4">
+        </video>
+        {% endif %}
+
+        <script>
+          $(document).ready(function() {
+          $(".video-fluid").on("mouseover", function(event) {
+          this.play();
+
+          }).on('mouseout', function(event) {
+          this.pause();
+
+          });
+          })
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+  
+        <div class="group text-center" id="div_count">
+          <a href="{% url 'comentarios' post.pk %}" id="count" title="me gustas">{{post.likes.count}} Me gusta <span class="icon-thumbs-up-alt"></span></a>
+          <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">{{post.comments.count}} Comentarios <span class="icon-comment-inv"></span></a>
+          <!--
+          <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">100 <span class="icon-reply-all-1"></span></a>
+          -->
+        </div>
+    
+      </div>
+    
+    {% endif %}
+  {% endfor%}
+  <!-- fin post de usuarios seguidos -->
+  </div>
+
+</body>
+
+<!-- fin sin login -->
+{% endif %}
+
+</html>
+
+
+

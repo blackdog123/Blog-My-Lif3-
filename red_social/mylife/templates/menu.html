@@ -1,0 +1,137 @@
+<!--Menu-->
+{% load static %}
+    <nav class="navbar navbar-white" id="barra_menu" >
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img  src="{% static 'img/logo2.png' %}" alt="" id="logo">
+        </a>
+
+        {% if request.user.is_authenticated %}
+        <div class="btn-group container-fluid" id="box_icons">
+          <a href="/" class="btn btn-primary" id="icons_menu"><span class="icon-home-1"></span></a>
+          <a href="/chat" class="btn btn-primary" id="icons_menu"><span class="icon-chat"></span></a>
+          <a href="/usuarios" class="btn btn-primary" id="icons_menu"><span class="icon-user-plus"></span></a>
+          <a href="/explorar" class="btn btn-primary" id="icons_menu"><span class="icon-users"></span></a>
+        </div>
+        {% else %}
+
+        {% endif %}
+
+
+  
+        <!--
+        <form class="d-flex" id="buscar" method="get">
+          {% csrf_token %}
+          <input class="form-control" type="search" name="username" id="buscador" placeholder="Buscar" aria-label="Search">
+          <button class="btn btn-outline-success" id="btn_buscar" title="buscar" type="submit"><span class="icon-search"></button>  
+        </form>
+        -->
+  
+        <ul class="nav justify-content-start" id="box_nav" >
+  
+          {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown" >
+            <a class="nav-link dropdown-toggle" title="menú" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{ request.user.profile.foto_perfil.url}}" id="foto_perfil"></img>
+              {{request.user.username}}
+            </a>
+           
+            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdownMenuLink" id="opciones">
+              <li><a class="dropdown-item" href="{% url 'perfil' request.user.username %}"><span class="icon-user"></span> Perfil</a></li>
+              <li><a class="dropdown-item" href="{% url 'editar_perfil' request.user.profile.id %}"><span class="icon-edit-1"></span> Editar Perfil</a></li>  
+              <li><a class="dropdown-item" href="{% url 'configuracion' request.user.pk %}"><span class="icon-cog"></span> Configuración</a></li>  
+              {% if request.user.profile.tipo_permiso == 'Administrador' %}
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/dashboard"><span class="icon-lock"></span> Dashboard</a></li>
+              {% else %}
+
+              {% endif %}
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout"><span class="icon-logout"></span> Cerrar Sesión</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" id="navbarDropdownMenuLink" href="/login"><span class="icon-user-circle-o"></span> Iniciar Sesión</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>
+
+
+    <nav class="navbar navbar-light fixed-top" id="menu_mobile">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img  src="{% static 'img/logo2.png' %}" alt="" id="logo">
+        </a>
+
+        {% if request.user.is_authenticated %}
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" id="btn_menu_mobile">
+          <span class="icon-menu-1"></span>
+        </button>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <img src="{{ request.user.profile.foto_perfil.url}}" id="foto_perfil"></img>
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">{{request.user.username}}</h5>
+            <button type="button" class="text-reset" data-bs-dismiss="offcanvas" aria-label="Close" style="background: transparent; border: none;"><i class="icon-cancel-1" id="btn_close_menu_mobile"></i></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'perfil' request.user.username %}"><span class="icon-user"></span> Perfil</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'editar_perfil' request.user.profile.id %}"><span class="icon-edit-1"></span> Editar Perfil</a>
+                <a class="nav-link" href="{% url 'configuracion' request.user.pk %}"><span class="icon-cog"></span> Configuración</a>
+              </li>
+
+              <li><hr class="dropdown-divider"></li>
+              <li class="nav-item">
+                <a class="nav-link" href="/chat"><span class="icon-chat"></span> Mensajes</a>
+              </li>
+
+
+              {% if request.user.profile.tipo_permiso == 'Administrador' %}
+              <li><hr class="dropdown-divider"></li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><span class="icon-lock"></span> Dashboard</a>
+              </li>
+              {% else %}
+
+              {% endif %}
+              <li><hr class="dropdown-divider"></li>
+              <li class="nav-item">
+                <a class="nav-link" href="/usuarios"><span class="icon-user-plus"></span> Otros Usuarios</a>
+              </li>
+
+              <li><hr class="dropdown-divider"></li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/explorar"><span class="icon-users"></span> Explorar</a>
+              </li>
+              
+         
+               <li><hr class="dropdown-divider"></li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="/logout"><span class="icon-logout"></span> Cerrar Sesión</a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+
+        {% else %}
+        <ul class="nav justify-content-start" >
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" id="navbarDropdownMenuLink" href="/login"><span class="icon-user-circle-o"></span> Iniciar Sesión</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>

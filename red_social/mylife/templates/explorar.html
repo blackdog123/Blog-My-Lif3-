@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/explorar.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/messages.css'%}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Lif3</title>
+
+    
+</head>
+<body class="body">
+    <header>
+        {% include 'menu.html' %}
+    </header>
+    {% include 'messages/success.html' %}
+
+    <div class="container all_explorer">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% load humanize %}
+            {% for post in object_list %}
+            <div class="col">       
+              <div class="card h-100" id="card_post_profile">
+                
+              <div class="card-body">   
+                <h5 class="card-title btn-group-lg"><a id="autor" href="{% url 'perfil' post.user.username %}">
+                  <img class="img-fluid" src="{{ post.user.profile.foto_perfil.url}}" id="foto_perfil_post" alt="foto_perfil"> 
+                  {% if post.user.profile.tipo_verificacion == 'Verificado' %}
+                  {{post.user.username}}</a><i class="icon-ok-circle" id="icon_verifique_post_profile"></i>
+                  {% else %}
+                  {{post.user.username}}</a>
+                  {% endif %}
+                  <time data-time="#" id="tiempo" ><span class="icon-upload"></span> {{ post.fecha_creacion|naturaltime }}</time>
+                </h5>          
+              </div>
+    
+              <div class="container">
+                <p class="card-text" id="texto">{{post.texto}}</p>
+              </div>
+                {% if post.imagen %}
+                <a href="{{post.imagen.url}}">
+                  <img src="{{post.imagen.url}}" class="card-img-top" alt="..." id='post_image'>
+                </a>
+              
+                {% elif post.video  %}
+                <video src="{{post.video.url}}" id="video" controls="" loop="" class="video-fluid">
+                  <source src="{{post.video.url}}" type="video/mp4">
+                </video>
+                {% endif %}
+    
+                <div class="card-body">
+                    
+                  <div class="group " id="div_count">
+                    <a href="{% url 'comentarios' post.pk %}" id="count" title="me gusta">{{post.likes.count}} <span class="icon-thumbs-up-alt"></span></a>
+                    <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">{{post.comments.count}} <span class="icon-comment-inv"></span></a>
+                    <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">100 <span class="icon-reply-all-1"></span></a>
+                  </div>         
+                </div>
+              </div>
+            </div>
+    
+         
+          
+            {% endfor %}
+          </div>
+    </div>
+</body>
+</html>

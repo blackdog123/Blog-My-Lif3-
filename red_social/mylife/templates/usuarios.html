@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load crispy_forms_tags %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/usuarios.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Lif3</title>
+</head>
+
+ <!--Menu-->
+<header>
+  {% include 'menu.html' %}
+</header>
+<body class="body">
+
+
+<button class="btn btn-primary" id="float_btn_search" title="Buscar Usuario" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  <i class="icon-search"></i>
+</button>
+
+    
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" id="modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Buscar Usuario</h5>
+          <button type="button" class="icon-cancel-1" id="btn_cerrar_modal" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="get" id="formulario">
+
+                {{ filter.form|crispy }}
+
+                <button type="submit" class="btn btn-primary" id="btn_buscar">Buscar</button>
+              </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="content">
+            <div class="container">
+                <div class="row" style="margin-top: 110px;">
+                  {% for user in filter.qs %}
+                  {% load humanize %}
+                    <div class="col-lg-4">
+                        <div class="text-center card-box">
+                            <div class="member-card pt-2 pb-2">
+                                <div class="thumb-lg member-thumb mx-auto"><img src="{{user.profile.foto_perfil.url}}" class="rounded-circle" id="img_profile" alt="profile-image"></div>
+                                <div class="">
+                                  {% if user.first_name == ''  %}
+                                  <h4> ----- {{user.last_name}} </h4>
+                                  {% elif user.last_name == '' %}
+                                  <h4>{{user.first_name}} ----- </h4>
+                                  {% else %}
+                                  <h4>{{user.first_name}} {{user.last_name}} </h4>
+                                  {% endif %}
+
+                                  {% if user.profile.tipo_verificacion == 'Verificado' %}
+                                    <p class="" id="username">@{{user.username}}<i class="icon-ok-circle" id="icon_verifique"></i><span>| </span><span><a href="#" class="text-pink">{{user.email}}</a></span></p>
+                                  {% else %}  
+                                  <p class="" id="username">@{{user.username}}<span> | </span><span><a href="#" class="text-pink">{{user.email}}</a></span></p>
+                                  {% endif %}
+                                </div>
+                                <ul class="social-links list-inline">
+                                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="icon-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="icon-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="icon-twitter"></i></a></li>
+                                </ul>
+                                <a type="button" href="{% url 'perfil' user.username %}" id="btn_view_profile" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Ver Perfil</a>
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="mt-3">
+                                                <h4>{{user.posts.count}}</h4>
+                                                <p class="mb-0" id="estadisticas">Posts</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mt-3">
+                                                <h4>{{user.profile.Followers.count}}</h4>
+                                                <p class="mb-0" id="estadisticas">Seguidores</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mt-3">
+                                                <h4>{{user.profile.Following.count}}</h4>
+                                                <p class="mb-0" id="estadisticas">Seguidos</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>   
+              </div>    
+            </div>
+        </div>
+        
+</body>
+</html>
+
+
+
+
+

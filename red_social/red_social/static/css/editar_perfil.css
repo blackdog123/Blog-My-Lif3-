@@ -1,0 +1,151 @@
+/*
+----------------------------------------------------
+estilos formulario editar perfil
+----------------------------------------------------
+*/
+
+.formulario {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 110px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #332F63;
+
+}
+
+.titulo {
+    color: #fff;
+}
+
+label {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#id_foto_perfil {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#id_foto_perfil:focus {
+    border-color: #FE2E64;
+}
+
+#id_foto_perfil:not(focus) {
+    transition:  all 0.2s;
+}
+
+
+#id_foto_portada {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#id_foto_portada:focus {
+    border-color: #FE2E64;
+}
+
+#id_foto_portada:not(focus) {
+    transition:  all 0.2s;
+}
+
+#id_bio {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 40px;
+    height: 120px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#id_bio::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#id_bio:focus {
+    border-color: #FE2E64;
+}
+
+#id_bio:not(focus) {
+    transition:  all 0.2s;
+}
+
+#btn_save {
+    width: 40%;
+    margin: auto;
+    padding: 10px 5px;
+    border-radius: 30px;
+    background: #FE2E64;
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+
+#btn_save:hover {
+    background: transparent;
+    border-color: #FE2E64;
+    color: #FE2E64;
+}
+
+#btn_save:not(hover) {
+    transition: all 0.3s;
+}
+
+#btn_save:active {
+    transform: scale(97%);
+}
+
+@media(max-width:767px) {
+    #btn_save {
+        width: 100%;
+    }
+    .formulario {
+        margin-bottom: 15px;
+    }
+}
+
+/*
+----------------------------------------------------
+estilos imagen previa foto perfil
+----------------------------------------------------
+*/
+
+
+#imagen_perfil {
+    width: 200px;
+    height: 192px;
+    border-radius: 50%;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+
+#preview img {
+    width: 200px;
+    height: 192px;
+    border-radius: 50%;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    background: #fff;
+    background-repeat: no-repeat center top;
+}
+
+
+

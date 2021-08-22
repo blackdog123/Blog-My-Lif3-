@@ -1,0 +1,36 @@
+<form action="upload_post" method="POST" class="formulario" onkeyup="stateHandle()">
+  {% csrf_token %}
+
+  <select hidden class="form-select" name="user_id" id="id_autor" aria-label="Default select example">
+    <option disabled>----------------</option>
+    <option selected value="{{user.profile.user_id}}">{{request.user.username}}</option>
+  </select>
+   
+  <div class="mb-3 col-12">
+    <textarea class="form-control" name="texto" id="text_post"  placeholder="¿ En que estás pensando, {{ request.user.username }} ?"></textarea>
+  </div>
+    <br>
+    <div class="d-grid gap-2 col-9 mx-auto">
+      <button class="btn btn-primary" id="btn_publicar" name="publicar" type="submit" >Publicar <span class="icon-upload"></span></button>
+  </div> 
+</form>
+
+
+<script >
+  let input = document.getElementById("text_post");
+  let button = document.getElementById("btn_publicar");
+
+  button.disabled = true; //setting button state to disabled
+
+  input.addEventListener("change", stateHandle);
+
+function stateHandle() {
+    if (document.getElementById("text_post").value === "") {
+        button.disabled = true; //button remains disabled
+    } else {
+        button.disabled = false; //button is enabled
+    }
+}
+</script>
+
+

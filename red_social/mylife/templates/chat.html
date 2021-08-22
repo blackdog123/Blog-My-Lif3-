@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load humanize %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle%}My Lif3{% endblock %}</title>
+</head>
+
+<body class="body">
+  <!--Menu-->
+  <header>
+  {% include 'menu.html' %}
+  </header>
+  
+  <div class="separador">
+    <br>
+  </div>
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-lg-12"> 
+        <div class="card chat-app" id="chat_app">
+            <div id="plist" class="people-list">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search...">
+                </div>
+
+                <ul class="list-unstyled chat-list mt-2 mb-0" >
+                  {% for room in object_list %}
+
+                    {% if user.username == room.to_user.username or user.username == room.from_user.username  %}
+                      {% if request.user.username == room.from_user.username %}
+
+                      <a href="{% url 'room' room.id %}">
+                      <li class="clearfix">
+                          <img src="{{room.to_user.profile.foto_perfil.url}}" alt="avatar">
+                          <div class="about">
+                            <div class="name">{{room.to_user}}</div>
+                            
+                            <div class="status"> 
+                              {% if room.to_user.profile.estado_conexion == 'Conectado' %}
+                              <i class="fa fa-circle online"></i> Disponible  
+                              {% elif room.to_user.profile.estado_conexion == 'Ausente' %}
+                              <i class="fa fa-circle" style="color: #FFBF00;"></i> Ausente
+                              {% else %}
+                              <i class="fa fa-circle offline"></i> Desconectado 
+                              {% endif %}
+                            </div>   
+
+                          </div>
+                      
+                      </li>
+                      </a>
+
+                      {% else %}
+
+                      <a href="{% url 'room' room.id %}">
+                      <li class="clearfix">
+                          <img src="{{room.from_user.profile.foto_perfil.url}}" alt="avatar" >
+                          <div class="about">
+
+                              <div class="name">{{room.from_user}}</div>
+                              <div class="status"> 
+                                {% if room.from_user.profile.estado_conexion == 'Conectado' %}
+                                <i class="fa fa-circle online"></i> Disponible 
+                                {% elif room.from_user.profile.estado_conexion == 'Ausente' %}
+                                <i class="fa fa-circle" style="color: #FFBF00;"></i> Ausente
+                                {% else %}
+                                  <i class="fa fa-circle offline"></i> Desconectado 
+                                {% endif %}
+                              </div>    
+
+                          </div>       
+                      </li>
+                      </a>
+                      {% endif %}
+                    {% else %}
+
+                    {% endif %}
+
+                  {% endfor %}
+                </ul>
+
+            </div>
+            <div class="chat">
+                <div class="chat-history">
+                    <ul class="m-b-0">
+                      <div class="col-12 px-0">
+                        <div class="container"> 
+                          <div class="card text-center" id="info_chat">
+                            <div class="card-body">
+                              <h5 class="icon-chat-empty" id="icon_chat"></h5>
+                              <h5 class="card-title" id="carta_titulo">Tus Mensajes</h5>
+                              <p class="card-text" id="carta_texto">comunicate con otro usuario en mensajes privados</p>
+                              <a href="#" class="btn btn-primary" id="btn_create_chat">Enviar Mensaje</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

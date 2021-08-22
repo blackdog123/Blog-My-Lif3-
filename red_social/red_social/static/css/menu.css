@@ -1,0 +1,283 @@
+/**
+-----------------------------------------------
+estilos barra menu
+------------------------------------------------
+*/
+
+#barra_menu {
+    background: #332F63;
+    height: 85px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.separador {
+    margin-bottom: 90px;
+}
+
+
+#logo {
+    width: 50px; 
+    height: 50px;
+    position: absolute;
+    left: 7.9%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#box_icons {
+    width: 40%;
+    right: 3%;
+}
+
+#box_nav {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+
+@media(max-width:991px) {
+    #barra_menu {
+        display: none;  
+    }
+
+}
+
+#icons_menu {
+    color: #fff;
+    font-size: 25px;
+    margin: 2px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+#icons_menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#nombre {
+ color: #fff;
+}
+
+#foto_perfil {
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+    border-radius: 50%; 
+}
+
+#navbarDropdownMenuLink {
+    border-radius: 10px;
+    padding: 12px 20px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff; 
+}
+
+#navbarDropdownMenuLink:hover {
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+  
+}
+
+#navbarDropdownMenuLink:focus {
+    background: rgba(255, 255, 255, 0.8);
+    color: #332F63;
+}
+
+#navbarDropdownMenuLink:not(focus) {
+    transition: all 0.3s;
+}
+
+#navbarDropdownMenuLink:active {
+    transform: scale(90%);
+}
+
+#opciones {
+    padding: 8px;
+    border-radius: 10px;
+    border-color: rgba(255, 255, 255, 0.1) ;
+    background: #332F63;
+    
+}
+
+#opciones a {
+    border-radius: 10px;
+    padding: 12px 50px;
+    color: #fff;
+}
+
+#opciones a:hover {
+    background: rgba(255, 255, 255, 0.1);
+ 
+}
+
+.dropdown-divider {
+    background: rgba(255, 255, 255, 0.99);
+}
+
+/**
+-----------------------------------------------
+estilos buscador
+------------------------------------------------
+*/
+
+
+#buscar {
+    width: 40%; 
+}
+
+#buscador {
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;  
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+    color: #1C1C1C;
+}
+
+#buscador:focus {
+    background: rgba(255, 255, 255, 0.9);
+   
+}
+#buscador:focus::placeholder {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+#buscador::placeholder {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#buscador:not(focus) {
+    transition: all 0.3s;
+}
+
+#btn_buscar {
+    box-shadow: none;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    background:#424242;
+    color: #A4A4A4;
+    border: 1px solid #424242;
+}
+
+
+#btn_buscar:hover {
+    transition: all 0.3s;
+    color: #fff;
+}
+
+
+
+
+/**
+-----------------------------------------------
+estilos barra menu mobile
+------------------------------------------------
+*/
+
+#menu_mobile {
+    background: #332F63;
+    height: 85px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+@media(min-width:992px) {
+    #menu_mobile {
+        display: none;  
+    }
+}
+
+
+#btn_menu_mobile {
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff; 
+    box-shadow: none;
+}
+
+
+#btn_menu_mobile:hover {
+    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.2);
+  
+}
+
+#btn_menu_mobile:focus {
+    background: rgba(255, 255, 255, 0.8);
+    color: #332F63;
+}
+
+#btn_menu_mobile:not(focus) {
+    transition: all 0.3s;
+}
+
+#btn_menu_mobile:active {
+    transform: scale(90%);
+}
+
+#offcanvasNavbarLabel {
+    color: #fff;
+}
+
+
+#offcanvasNavbar {
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #332F63;
+}
+
+#offcanvasNavbar a {
+    border-radius: 10px;
+    padding: 12px 50px;
+    color: #fff;
+}
+
+#offcanvasNavbar a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#offcanvasNavbar a:not(hover) {
+    transition: all 0s;
+}
+
+#btn_close_menu_mobile {
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.9);
+    border: none;
+    font-size: 18px; 
+    padding: 7px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+#btn_close_menu_mobile:hover {
+    background: rgba(255, 255, 255, 0.3); 
+    color: rgba(255, 255, 255, 0.99);
+}
+
+
+#btn_close_menu_mobile:not(hover) {
+    transition: all 0.3s;
+}
+
+
+

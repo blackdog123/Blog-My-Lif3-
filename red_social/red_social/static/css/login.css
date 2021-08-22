@@ -1,0 +1,139 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+
+.bg-image {
+  background: url("/static/img/login.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+#titulo {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 30px;
+}
+
+#sub {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 17px;
+  margin: auto;
+  margin-bottom: 4px;
+  display: block;
+  width: 70%;
+}
+
+
+#username {
+  padding: 11px 8px;
+  border-radius: 10px;
+  width: 70%;
+  margin: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.9);
+
+}
+
+#username:focus {
+  border-color: #FE2E64;
+}
+
+#username:not(focus) {
+  transition: all 0.3s;
+}
+
+#username::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#password {
+  padding: 11px 8px;
+  border-radius: 10px;
+  width: 70%;
+  margin: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#password:focus {
+  border-color: #FE2E64;
+}
+
+#password:not(focus) {
+  transition: all 0.3s;
+}
+
+#password::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#btn_login {
+  box-shadow: none;
+  border-radius: 10px;
+  padding: 10px ;
+  margin: auto;
+  display: block;
+  width: 65%;
+  font-weight: 500;
+  font-size: 18px;
+  background: #FE2E64;
+  color: #fff;
+  border: 1px solid transparent;
+
+}
+
+#btn_login:hover {
+  background: transparent;
+  color: #FE2E64;
+  border-color: #FE2E64;
+}
+
+#btn_login:not(hover) {
+  transition: all 0.3s;
+}
+
+span {
+  margin: auto;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#link{
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  display: block;
+  margin: auto;
+}
+
+#link:hover {
+  transition: all 0.3s;
+  color: #FE2E64;
+  text-decoration: underline;
+
+}
+
+@media(max-width:768px) {
+  #sub {
+    width: 85%;
+  }
+  #username {
+    width: 85%;
+  }
+  #password {
+    width: 85%;
+  }
+  #btn_login {
+    width: 80%;
+  }
+}
+

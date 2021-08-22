@@ -1,0 +1,156 @@
+.sub {
+    text-align: center;
+    margin-bottom: 18PX;
+    font-size: 25px;
+}
+
+#exampleFormControlTextarea1 {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    box-shadow: none;
+    border: none;
+    resize: none;
+}
+
+#btn_cambios {
+    background:#04B404;
+    padding: 8px;
+    border: none;
+    box-shadow: none;
+}
+
+#btn_cambios:hover {
+    transition: all 0.3s;
+    background: #088A08;
+}
+
+#btn_cambios:active {
+    transform: scale(0.99);
+}
+
+#username {
+    padding: 10px;
+    background: #F2F2F2;
+    box-shadow: none;
+    border: 1px solid #F2F2F2;
+} 
+
+#username:hover {
+    background: #FAFAFA;
+    border: 1px solid #0174DF;
+    transition: all 0.3s;
+}
+
+#username:focus {
+    background: #fff;
+    border: 1px solid #0174DF;
+}
+
+#first_name {
+    padding: 10px;
+    background: #F2F2F2;
+    box-shadow: none;
+    border: 1px solid #F2F2F2;
+} 
+
+#first_name:hover {
+    background: #FAFAFA;
+    border: 1px solid #0174DF;
+    transition: all 0.3s;
+}
+
+#first_name:focus {
+    background: #fff;
+    border: 1px solid #0174DF;
+}
+
+#last_name {
+    padding: 10px;
+    background: #F2F2F2;
+    box-shadow: none;
+    border: 1px solid #F2F2F2;
+} 
+
+#last_name:hover {
+    background: #FAFAFA;
+    border: 1px solid #0174DF;
+    transition: all 0.3s;
+}
+
+#last_name:focus {
+    background: #fff;
+    border: 1px solid #0174DF;
+}
+
+#email {
+    padding: 10px;
+    background: #F2F2F2;
+    box-shadow: none;
+    border: 1px solid #F2F2F2;
+}
+
+#email:hover {
+    background: #FAFAFA;
+    border: 1px solid #0174DF;
+    transition: all 0.3s;
+}
+
+#email:focus {
+    border: 1px solid #0174DF;
+}
+
+
+.formulario {
+    margin: auto;
+    padding: 18px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 15%);
+    border-radius: 7px;
+    background: #fff;
+}
+
+
+@media(min-width:1444px) {
+    .formulario {
+        margin: auto;
+        width: 400px;
+    }
+}
+
+@media(max-width:1443px) {
+    .formulario {
+        margin: auto;
+        width: 400px;
+    }
+}
+
+
+@media(max-width:500px) {
+    .formulario {
+        margin: auto;
+        width: 80%;
+    }
+  
+}
+
+@media(max-width:400px) {
+    .formulario {
+        margin: auto;
+        margin-top: 50px;
+        width: 100%;
+    }
+}
+
+@media(min-width:1024px) {
+    #alerta {
+        width: 60%;
+    }
+}
+
+
+@media(max-width:768px) {
+    #alerta {
+        width: 100%;
+        font-size: 14px;
+    }
+}

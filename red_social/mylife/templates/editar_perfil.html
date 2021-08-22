@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load crispy_forms_tags %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/editar_perfil.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle%}My Lif3{% endblock %}</title>
+
+</head>
+{% if user.id == profile.user.id %}
+
+ <!--Menu-->
+<header>
+  {% include 'menu.html' %}
+</header>
+
+<body class="body">
+     <!--info perfil--> 
+  <div class="container">
+
+    <form  method="POST" class="formulario" enctype="multipart/form-data" novalidate>
+
+    {% csrf_token %}
+    <div class="mb-5 col-12">
+      <h2 class="titulo">Editar Perfil</h2>
+    </div>
+
+    <div class="text-center">
+      <div id="preview">
+        <a href="{{user.profile.foto_perfil.url}}"><img class="img-fluid img-thumbnail"  src="{{ user.profile.foto_perfil.url }}" id="imagen_perfil"></img>
+        </a>
+      </div>
+    </div>
+
+    <div class="mb-3 col-12">
+      {{ form|crispy }}
+    </div>
+    <div class="d-grid gap-2 col-9 mx-auto">
+      <button  class="btn btn-primary" id="btn_save" type="submit" onClick="return confirm('¿ Seguro que Quieres editar tu Perfil ?');">Editar Perfil </span></button>
+    </div>
+    </form>
+    
+</div> 
+
+<script>
+  document.getElementById("id_foto_perfil").onchange = function(e) {
+    // Creamos el objeto de la clase FileReader
+    let reader = new FileReader();
+  
+    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+    reader.readAsDataURL(e.target.files[0]);
+  
+    // Le decimos que cuando este listo ejecute el código interno
+    reader.onload = function(){
+      let preview = document.getElementById('preview'),
+              image = document.createElement('img');
+  
+      image.src = reader.result;
+  
+      preview.innerHTML = '';
+      preview.append(image);
+    };
+  }
+</script>
+</body>
+{% else %}
+
+ {% include 'error/error404.html' %}
+
+{% endif %}
+</html>

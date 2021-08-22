@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load crispy_forms_tags %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/messages.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Lif3</title>
+</head>
+
+
+{% if request.user.profile.tipo_permiso == 'Administrador' %}
+
+<body id="body-pd" class="body">
+  {% include 'dashboard/menu_dashboard.html' %}  
+  
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" id="modal">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Filtrar Usuarios Por :</h5>
+           <button type="button" id="btn_cerrar_modal" title="Cerrar" class="btn btn-secondary" data-bs-dismiss="modal"><span class="icon-cancel-1"></span></button>
+        </div>
+        <div class="modal-body">
+          <form method="get" id="formulario">
+            {{ filter.form|crispy }}
+            <button type="submit" class="btn btn-primary" id="btn_buscar">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+  <div class="container-fluid" style="margin-top: 100px;">
+    {% include 'messages/dash_success.html' %}
+
+      <a href="/registro" class="btn btn-primary" id="btn_add" ><span class="icon-user-plus"> Nuevo Usuario</span></a>
+      <button type="button"  id="btn_filter"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Filtrar <span class="icon-search"></span>
+      </button>
+      <hr>
+      
+    <div class="table-responsive table-borderless">
+      <table class="table">
+          <thead class="thead">
+              <tr>
+                  <th>#</th>
+                  <th>Foto</th>
+                  <th>Username</th>
+                  <th>Permisos</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          {% for user in filter.qs %}
+          {% load humanize %}
+          <tbody class="table-body">
+              <tr class="cell-2">
+                  <td>{{user.id}}</td>
+                  <td><img src="{{user.profile.foto_perfil.url}}" width="42" height="42" style="border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.9);" class="img-circle" alt=""></td>
+         
+                  {% if user.profile.tipo_verificacion == 'Verificado' %}
+                  <td>{{user.username}}<i class="icon-ok-circle" id="icon_verifique"></i></td>
+                  {% else %}
+                  <td>{{user.username}}</td>
+                  {% endif%}
+
+                  {% if user.profile.tipo_permiso == 'Administrador' %}
+                  <td>{{user.profile.tipo_permiso}} <span class="icon-crown-plus" style="color: #FFBF00;"></span></td>
+                  {% else %}
+                  <td>{{user.profile.tipo_permiso}}</td>
+                  {% endif %}
+
+                  {% if user.is_active == True %}
+                  <td><span class="badge" id="user_activ">Activo</span></td>
+                  {% else %}
+                  <td><span class="badge" id="user_desac">Desactivado</span></td>
+                  {% endif %}
+                
+                  <td>  <div class="btn-group">
+                    {% if user.username == request.user.username %}
+                    <a href="{% url 'perfil' user.username %}" class="btn btn-primary" id="editar" title="Ver Usuario"><span class="icon-user"></span></a>
+                    {% else %}
+                    <a href="{% url 'editar_usuario' user.id %}" class="btn btn-primary" id="editar" title="Editar Usuario"><span class="icon-pencil-alt"></span></a>   
+                    <a href="{% url 'editar_permiso' user.profile.id %}" class="btn btn-primary" id="editar" title="Permisos de Accesos y Verificación"><span class="icon-lock"></span></a>
+                    <a href="{% url 'perfil' user.username %}" class="btn btn-primary" id="editar" title="Ver Usuario"><span class="icon-user"></span></a>
+                    <a href="{% url 'eliminar_usuario' user.id %}"  class="btn btn-primary" id="eliminar" title="Eliminar Usuario"><span class="icon-trash" onClick="return confirm('¿ Seguro qué quieres eliminar a este usuario ?');"></span></a>
+                    {% endif %}
+                  </div>
+                </td>   
+              </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+    </div>
+  </div>
+  
+</body>
+{% else %}
+  {% include 'error/error404.html' %}
+{% endif %}
+</html>

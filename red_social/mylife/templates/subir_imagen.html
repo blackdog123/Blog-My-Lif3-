@@ -1,0 +1,42 @@
+{% load static %}
+
+<form action="upload_image" method="POST" class="formulario" enctype="multipart/form-data" onkeyup="ValidarImagen()">
+  {% csrf_token %}
+
+  <select hidden class="form-select" name="user_id" id="id_autor" aria-label="Default select example">
+    <option disabled>----------------</option>
+    <option selected value="{{user.profile.user_id}}">{{request.user.username}}</option>
+  </select>
+   
+  <div class="mb-3 col-12">
+    <textarea class="form-control" name="texto" id="text_img"  placeholder="Escibe aquí algo sobre tú imagen"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <input type="file" name="imagen" id="imagen"  accept="image/*">
+  </div>
+    <br>
+  <div class="d-grid gap-2 col-9 mx-auto">
+      <button class="btn btn-primary" id="btn_publicar_img" name="publicar" type="submit" >Publicar <span class="icon-upload"></span></button>
+  </div> 
+</form>
+
+
+<script >
+  let inp_images = document.getElementById("imagen");
+  let boton_image = document.getElementById("btn_publicar_img");
+
+  boton_image.disabled = true; //setting button state to disabled
+
+  inp_images.addEventListener("change", ValidarImagen);
+
+function ValidarImagen() {
+    if (document.getElementById("imagen").value === "") {
+      boton_image.disabled = true; //button remains disabled
+    } else {
+      boton_image.disabled = false; //button is enabled
+    }
+}
+</script>
+
+<script type="text/javascript" src="{% static 'js/pre_image.js' %}"></script>

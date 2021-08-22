@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/comentarios.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/messages.css'%}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle%}My Lif3{% endblock %}</title>
+</head>
+ <!--Menu-->
+<header>
+  {% include 'menu.html' %}
+</header>
+
+{% include 'messages/error.html' %}
+
+
+<div class="separador">
+  <br>
+</div>
+
+<body class="body">
+
+  <div class="container">
+    {% load humanize %}
+
+    <div class="card" id="box_post">
+      <div class="card-body">
+        
+        <h5 class="card-title btn-group-lg"><a id="autor" href="{% url 'perfil' post.user.username %}">
+          <img src="{{ post.user.profile.foto_perfil.url}}" id="foto_perfil_post" alt="foto_perfil"> 
+
+          {% if post.user.profile.tipo_verificacion == 'Verificado' %}
+          {{post.user.username}}</a><i class="icon-ok-circle" id="icon_verifique"></i>
+          {% else %}
+          {{post.user.username}}</a>
+          {% endif %}
+          <time data-time="#" id="tiempo" ><span class="icon-clock"></span>{{ post.fecha_creacion|naturaltime }}</time>
+        </h5>
+      </div>
+      <p class="card-text" id="texto">{{post.texto}}</p>
+      {% if post.imagen %}
+      <td><a href="{{ post.imagen.url }}"><img  id="imagen_post" class="img-fluid" src="{{ post.imagen.url }}"></img></a></td>
+      {% endif %}
+
+      {% if post.video %}
+      <video src="{{post.video.url}}" id="video" controls="" autoplay class="video-fluid">
+        <source src="{{post.video.url}}" type="video/mp4">
+      </video>
+      {% endif %}
+
+      {% if request.user.is_authenticated %}
+      <div class="btn-group" role="group" id="grupo_btns_likes">
+          <form action="{% url 'like_post' post.pk %}" method="POST">
+          {% csrf_token %}
+
+          {% if liked %}
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button class="btn btn-primary" title="ya no me gusta" id="btn_like" type="submit" name="post_id" value="{{post.id}}">Quitar Me Gusta <span class="icon-thumbs-up-alt" ></span></button>
+          </div>
+          {% else %}
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button class="btn btn-primary" title="me gusta" id="btn_dislike" type="submit" name="post_id" value="{{post.id}}">Me Gusta <span class="icon-thumbs-up-alt" id="like"></span></button>
+          </div>
+              {% endif %}     
+          </form>
+      </div>
+      {% else %}
+      <p id="message_no_login">! Aviso ¡ debés haber iniciado sesión para poder interactúar con las publicaciones de otros usuarios</p>
+      {% endif %}
+
+      <div class="group " id="div_count">
+        <a id="count" aria-disabled="true">Me gusta ( {{total_likes}} )</a>
+        <a id="count">Comentarios ( {{post.comments.count}} )</a>
+      </div>
+
+
+      {% if request.user.is_authenticated %}
+      <form class="d-flex" method="POST" action="{% url 'publicar_comentario' post.pk %}">
+        {% csrf_token %}
+
+        <select hidden class="form-select" name="post_id" aria-label="Default select example" required>
+          <option disabled>----------------</option>
+          <option selected value="{{post.id}}" >{{post.id}}</option>
+        </select>
+     
+        <select hidden class="form-select" name="user_id" aria-label="Default select example" required>
+          <option disabled>----------------</option>
+          <option selected value="{{user.profile.user_id}}">{{request.user.username}}</option>
+        </select>
+     
+        <div class="input-group" id="box_comments">
+          <img class="input-group" src="{{ request.user.profile.foto_perfil.url}}" id="foto_comment" alt="foto_perfil">
+          <input type="text" id="input_comentario" name="texto" title="escribir comentario" class="form-control"  placeholder="Escribe un comentario ..." aria-label="Recipient's username" aria-describedby="button-addon2" required>
+          <button class="btn btn-outline-secondary" title="publicar comentario" type="submit" id="btn_cometario"><span class="icon-paper-plane-empty"></span></button>
+        </div>  
+
+      </form>
+      {% else %}
+      {% endif %}
+      <br>
+
+  
+      {% if not post.comments.all %}
+        <p id="sin_comentarios">
+        No hay comentarios aquí ...<a href=""></a>
+        </p> 
+      {% else %}
+          {% for comment in post.comments.all %}
+            <div id="caja_comentarios">
+              <a id="autor_comentario" href="{% url 'perfil' comment.user.username %}">
+              <img src="{{ comment.user.profile.foto_perfil.url}}" id="foto_perfil_comentario" alt="foto_perfil"> 
+
+              {% if comment.user.profile.tipo_verificacion == 'Verificado' %}
+              {{comment.user.username}}</a><i class="icon-ok-circle" id="icon_verifique"></i>
+              {% else %}
+              {{comment.user.username}}</a>
+              {% endif %}
+              
+              <time data-time="#" id="tiempo" title="{{comment.fecha_creacion}}"><span class="icon-comment-inv">
+              </span> {{comment.fecha_creacion|naturaltime}}</time>
+              <p id="text_comentario">
+                {{comment.texto}}
+                <div class="group " id="div_count_respuestas">
+                  <a  id="count_respuestas">respuestas ( {{comment.answers.count}} ) </a>
+                </div>
+              </p>
+
+              {% if not comment.answers.all %}
+              <p id="text_respuesta">
+              No hay respuestas aquí ...<a href="#"></a>
+              </p> 
+              {% else %}
+                {% for answer in comment.answers.all %}
+                  <div id="caja_respuesta">
+                    <a id="autor_comentario" href="{% url 'perfil' answer.user.username %}">
+                    <img src="{{ answer.user.profile.foto_perfil.url}}" id="foto_perfil_comentario" alt="foto_perfil">
+
+                    {% if answer.user.profile.tipo_verificacion == 'Verificado' %}
+                    {{answer.user.username}}</a><i class="icon-ok-circle" id="icon_verifique"></i>
+                    {% else %}
+                    {{answer.user.username}}</a>
+                    {% endif%}
+                    
+                    <time data-time="#" id="tiempo" title="{{answer.fecha_creacion}}"><span class="icon-reply-2"></span> {{answer.fecha_creacion|naturaltime}}</time>
+                    <p id="text_comentario">
+                      {{answer.texto}}
+                    </p>
+                  </div>
+                {%endfor%}
+              {% endif %}
+
+              {% if request.user.is_authenticated %}
+              <form class="d-flex" method="POST" action="{% url 'publicar_respuesta' post.pk%}">
+                {% csrf_token %}
+        
+                <select hidden class="form-select" name="comment_id" aria-label="Default select example" required>
+                  <option disabled>----------------</option>
+                  <option selected value="{{comment.id}}" >{{comment.id}}</option>
+                </select>
+             
+                <select hidden class="form-select" name="user_id" aria-label="Default select example" required>
+                  <option disabled>----------------</option>
+                  <option selected value="{{user.profile.user_id}}">{{request.user.username}}</option>
+                </select>
+             
+                <div class="input-group" id="card_responder">
+                  <img class="input-group" src="{{ request.user.profile.foto_perfil.url}}" id="foto_perfil_respuesta" alt="foto_perfil">
+                  <input type="text" id="responder" name="texto" class="form-control" placeholder="Escribe una respuesta...">
+                  <button class="btn btn-outline-secondary" title="publicar respuesta" id="btn_respuesta"><span class="icon-paper-plane-empty"></span></button>
+                </div>  
+              </form>
+              {% else %}
+
+              {% endif %}
+              <hr>
+            </div>
+     
+          {%endfor%}
+      {% endif %}   
+    </div>
+
+  </div>
+  <br>
+</body>
+</html>
+
+
+

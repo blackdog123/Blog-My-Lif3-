@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load crispy_forms_tags %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle%}My Lif3{% endblock %}</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn btn-primary" type="submit">Crear vinculo</button>
+    </form>
+    
+</body>
+</html>

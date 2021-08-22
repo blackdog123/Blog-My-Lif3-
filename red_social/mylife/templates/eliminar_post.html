@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  {% load humanize %}
+  <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/editar_posts.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/messages.css'%}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+  <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Lif3</title>
+</head>
+{% if user.id == post.user.id %}
+<body class="body">
+
+  <header>
+    {% include 'menu.html' %}
+  </header>
+
+  <div class="separador">
+    <br>
+  </div>
+
+  <div class="container" >
+
+    <form  method="POST" class="formulario_delete" enctype="multipart/form-data" novalidate>
+  
+    {% csrf_token %}
+    <div class="mb-5 col-12">
+      <h3 class="sub text-center">Eliminar Publicación, ¿ Estás Seguro ?</h3>
+    </div>
+  
+    <div class="card" id="box_post">
+          <div class="card-body">
+            <h5 class="card-title btn-group-lg"><a id="autor" href="{% url 'perfil' post.user.username %}">
+              <img class="img-fluid" src="{{ post.user.profile.foto_perfil.url}}" id="foto_perfil_post" alt="foto_perfil"> 
+
+              {% if post.user.profile.tipo_verificacion == 'Verificado' %}
+              {{post.user.username}}</a><i class="icon-ok-circle" id="icon_verifique"></i>
+              {% else %}
+              {{post.user.username}}</a>
+              {% endif %}
+
+              <time data-time="#" id="tiempo" ><span class="icon-clock"></span>{{ post.fecha_creacion|naturaltime }}</time>
+            </h5>
+          </div>
+        <div class="container">
+          <p class="card-text" id="texto">{{post.texto}}</p>
+        </div>
+        {% if post.imagen %}
+        <td>
+          <a href="{{post.imagen.url}}">
+            <img  id="imagen_post" class="img-fluid" src="{{post.imagen.url}}">
+          </a>
+        </td>
+        {% elif post.video  %}
+        <video src="{{post.video.url}}" id="video" controls="" loop="" class="video-fluid">
+          <source src="{{post.video.url}}" type="video/mp4">
+        </video>
+        {% endif %}
+
+        <script>
+          $(document).ready(function() {
+          $(".video-fluid").on("mouseover", function(event) {
+          this.play();
+
+          }).on('mouseout', function(event) {
+          this.pause();
+
+          });
+          })
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+  
+        <div class="group text-center" id="div_count">
+          <a href="{% url 'comentarios' post.pk %}" id="count" title="me gustas">{{post.likes.count}} <span class="icon-thumbs-up-alt"></span></a>
+          <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">{{post.comments.count}} <span class="icon-comment-inv"></span></a>
+          <!--
+            <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">100 <span class="icon-reply-all-1"></span></a>
+          -->
+        </div>
+    
+    </div>
+      
+    <div class="d-grid gap-2 col-9 mx-auto">
+      <button  class="btn btn-primary" id="btn_delete" type="submit" onClick="return confirm('¿ Seguro que quieres eliminar esta publicación ?');">Eliminar Post</button>
+    </div>
+    </form>
+
+  </div>
+
+  
+</body>
+
+{% else %}
+{% include 'error/error404.html' %}
+{% endif %}
+
+</html>

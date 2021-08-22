@@ -1,0 +1,253 @@
+/*------------------------------------------------
+    estilos formulario post solo texto
+-------------------------------------------------*/
+#staticBackdropLabel {
+    color: #fff;
+}
+
+#modal_texto {
+    border-radius: 10px;
+    border: none;
+    background: #332F63;
+}
+
+
+#btn_cerrar_modal_texto{
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-size: 15px; 
+    padding: 7px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+#btn_cerrar_modal_texto:hover {
+    background: #FE2E64;
+    color: #fff;
+}
+
+#btn_cerrar_modal_texto:not(hover) {
+    transition: all 0.3s;
+}
+
+#text_post {
+    padding: 10px;
+    background: #28254C;
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    resize: none;
+    color: #fff;
+}
+
+#text_post::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#btn_publicar {
+    width: 100%;
+    padding: 8px;
+    margin: auto;
+    border: none;
+    color: #fff;
+    background: #FE2E64;
+    border-radius: 10px;
+}
+
+
+
+/*------------------------------------------------
+    estilos formulario post imagenes y/o fotos
+-------------------------------------------------*/
+#modal_imagen {
+    border-radius: 10px;
+    border: none;
+    background: #332F63;
+}
+
+
+#btn_cerrar_modal_imagen{
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-size: 15px; 
+    padding: 7px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+#btn_cerrar_modal_imagen:hover {
+    background: #FE2E64;
+    color: #fff;
+}
+
+#btn_cerrar_modal_imagen:not(hover) {
+    transition: all 0.3s;
+}
+
+
+#text_img {
+    padding: 10px;
+    background: #28254C;
+    height: 200px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: none;
+    resize: none;
+    color: #fff;
+}
+
+#text_img::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#btn_publicar_img {
+    width: 100%;
+    padding: 8px;
+    margin: auto;
+    border: none;
+    color: #fff;
+    background: #FE2E64;
+    border-radius: 10px;
+}
+
+#imagen {
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    background: #28254C;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#pre_imagen {
+    margin-top: 40px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 5px solid #666;
+    background: #fff;
+}
+
+
+#preview img {
+    max-width: 450px;
+    border: 5px solid #666;
+    background: #fff;
+    background-repeat: no-repeat;
+}
+
+@media(max-width:580px) {
+    #preview img {
+        width: 250px;
+        border: 5px solid #666;
+        background: #fff;
+        background-repeat: no-repeat;
+    }
+    
+}
+
+
+
+/*------------------------------------------------
+    estilos formulario post videos
+-------------------------------------------------*/
+
+.formulario_video {
+    max-width: 800px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #332F63;
+}
+
+#titulo {
+    color: #fff;
+}
+
+label {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+
+#id_texto {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#id_texto::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#id_texto:focus {
+    border-color: #FE2E64;
+}
+
+#id_texto:not(focus) {
+    transition:  all 0.2s;
+}
+
+#id_video {
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#id_video:focus {
+    border-color: #FE2E64;
+}
+
+#id_video:not(focus) {
+    transition:  all 0.2s;
+}
+
+
+#btn_save_video {
+    width: 40%;
+    margin: auto;
+    padding: 10px 5px;
+    border-radius: 30px;
+    background: #FE2E64;
+    border: none;
+    color: #fff;
+    box-shadow: none;
+}
+
+
+#btn_save_video:hover {
+    opacity: 0.9;
+}
+
+#btn_save_video:not(hover) {
+    transition: all 0.3s;
+}
+
+#btn_save_video:active {
+    transform: scale(97%);
+}
+
+@media(max-width:768px) {
+    #btn_save_video  {
+        width: 55%;
+    }
+}

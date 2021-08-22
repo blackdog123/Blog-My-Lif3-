@@ -1,0 +1,276 @@
+.card-box {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background-color: #332F63; 
+}
+
+#img_profile {
+    width:80px;
+    height: 80px;
+}
+
+#username {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#estadisticas {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.card-box:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-box:not(hover) {
+    transition: all 0.3s;
+}
+
+.social-links li a {
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    height: 30px;
+    line-height: 27px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    width: 30px
+}
+
+.social-links li a:hover {
+    color: rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+.thumb-lg {
+    height: 88px;
+    width: 88px;
+}
+.img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+.text-pink {
+    color: #ff679b!important;
+}
+.btn-rounded {
+    border-radius: 2em;
+}
+.text-muted {
+    color: #98a6ad!important;
+}
+h4 {
+    line-height: 22px;
+    font-size: 18px;
+    color: #fff;
+}
+
+
+#icon_verifique {
+    color: #00BFFF;
+    font-size: 15px;
+}
+
+
+#btn_view_profile {
+    width: 45%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 30px;
+    background: #FE2E64;
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+
+#btn_view_profile:hover {
+    background: transparent;
+    border-color: #FE2E64;
+    color: #FE2E64;
+}
+
+#btn_view_profile:not(hover) {
+    transition: all 0.3s;
+}
+
+#btn_view_profile:active {
+    transform: scale(97%);
+}
+
+@media(max-width:767px) {
+    #btn_view_profile {
+        width: 70%;
+    }
+}
+
+
+/**-----------------------------------
+estilos formulario de busqueda
+-------------------------------------*/
+
+#modal {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #332F63;
+}
+
+#staticBackdrop {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#staticBackdropLabel {
+    color: #fff;
+}
+
+#formulario label {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#btn_cerrar_modal{
+    box-shadow: none;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-size: 15px; 
+    padding: 7px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1); 
+}
+
+#btn_cerrar_modal:hover {
+    background: #FE2E64;
+    color: #fff;
+}
+
+
+#btn_cerrar_modal:not(hover) {
+    transition: all 0.3s;
+}
+
+#float_btn_search {
+    position: fixed;
+    top: 90%;
+    left: 91%;
+    padding: 8px;
+    color: #fff;
+    background: #FE2E64;
+    box-shadow: none;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+#float_btn_search:active {
+    transform: scale(95%);
+}
+
+@media(max-width:767px) {
+    #float_btn_search {
+        left: 85%;
+    }
+}
+#id_username {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: none;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#id_username:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#id_username:not(hover) {
+    transition: all 0.3s;
+}
+
+#id_username:focus {
+    border-color: #FE2E64;
+}
+
+#id_username:not(focus) {
+    transition: all 0.3s;
+}
+
+#id_first_name {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: none;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#id_first_name:hover {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#id_first_name:not(hover) {
+    transition: all 0.3s;
+}
+
+#id_first_name:focus {
+    border-color: #FE2E64;
+}
+
+#id_first_name:not(focus) {
+    transition: all 0.3s;
+}
+
+#id_last_name {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: none;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#id_last_name:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#id_last_name:not(hover) {
+    transition: all 0.3s;
+}
+
+#id_last_name:focus {
+    border-color: #FE2E64;
+}
+
+#id_last_name:not(focus) {
+    transition: all 0.3s;
+}
+
+#btn_buscar {
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+    width: 50%;
+    background: #FE2E64;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+
+#btn_buscar:hover {
+    background: transparent;
+    color: #FE2E64;
+    border-color: #FE2E64;
+}
+
+#btn_buscar:not(hover){
+    transition: all 0.3s;
+}
+

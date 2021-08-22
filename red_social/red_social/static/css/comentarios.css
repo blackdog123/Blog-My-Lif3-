@@ -1,0 +1,476 @@
+#box_post {
+    margin: auto;
+    margin-bottom: 30px;
+    max-width: 700px;
+    border: 1px solid rgba(255, 255, 255, 0.1);  
+    border-radius: 10px; 
+    background: #332F63;
+}
+
+#box_post:hover {
+    border-color:  rgba(255, 255, 255, 0.3); 
+}
+
+#box_post:not(hover) {
+    transition: all 0.3s;
+}
+
+#foto_perfil_post { 
+    width: 38px;
+    height: 38px;
+    margin-right: 3px;    
+    border-radius: 50%;
+    background: #fff;
+}
+
+#autor {
+    color:#fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#autor:hover {
+    color: #FE2E64;
+}
+
+#autor:not(hover) {
+    transition: all 0.3s;
+}
+
+
+#icon_verifique {
+    color: #FE2E64;
+    font-size: 15px;
+}
+
+
+#tiempo {
+    font-size: 12px;
+    float: right;
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#imagen_post {
+    margin: auto;
+    display: block;
+    width: 90%;
+    border-radius: 10px;
+}
+
+
+#video {
+    margin: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    outline-style: none;
+}
+
+.control {
+    color: red;
+}
+
+
+#texto {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#div_count {
+    padding: 18px 15px;
+}
+
+#count {
+    padding: 12px 5px;
+    font-size: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+
+
+
+@media(max-width:480px) {
+    #foto_perfil_post {
+        width: 30px;
+        height: 30px;
+    }
+    #autor{
+        font-size: 14px;
+    }
+    #tiempo {
+        font-size: 10px;
+    }
+    #texto {
+        font-size: 13px;
+    }
+    #btn_cometario{
+        font-size: 11px;
+    }
+
+    #comentario {
+        font-size: 11px;
+    }
+    #autor_comentario {
+        font-size: 12px;  
+    }
+
+    #sin_comentarios {
+        font-size: 11px;
+    }
+
+    #foto_perfil_comentario {
+        width: 25px;
+        height: 25px;
+    }
+    #text_comentario{
+        font-size: 12px;
+    }
+}
+
+@media(min-width:1024px){
+    #caja_post_index {
+        margin-top: 30px;
+        margin-bottom: 60px;
+    }
+}
+
+@media(max-width:1024px){
+    #caja_post_index {
+        margin-top: 30px;
+        margin-bottom: 60px;
+    }
+}
+ 
+
+/**********/ 
+
+#box_comments {
+    width: 95%;
+    margin: auto;
+}
+
+#foto_perfil_comentario {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 3px;
+}
+
+#autor_comentario {
+    font-size: 14px;
+    color:#fff;
+    text-decoration: none;
+    font-weight: 500;  
+}
+
+
+#autor_comentario:hover {
+    color: #FE2E64;
+}
+
+#autor_comentario:not(hover) {
+    transition: all 0.3s;
+}
+
+
+
+/*------------------------------------------------
+estilos input and button comentario
+------------------------------------------------*/
+
+#foto_comment {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-left: 3px;
+}
+
+#input_comentario {
+    box-shadow: none;
+    border-radius: 10px;
+    background: #28254C;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#input_comentario::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#input_comentario:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#input_comentario:focus {
+    border-color: #FE2E64;
+}
+
+#input_comentario:not(focus) {
+    transition: all 0.3s;
+}
+
+#btn_cometario {
+    font-size: 12px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 3px;
+    margin-left: 3px;
+    box-shadow: none;  
+}
+
+#btn_cometario:hover {
+    background: #FE2E64;
+}
+
+#btn_cometario:active {
+    transform: scale(0.97);
+}
+
+#text_comentario {
+    color: #fff;
+    padding: 0px 50px;
+    width: 100%;
+}
+
+#caja_comentarios {
+    padding: 0PX 35px;
+}
+
+
+#sin_comentarios {
+    margin: auto;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 12px;
+}
+
+
+#card_responder {
+    margin: auto;
+    width: 85%; 
+}
+
+/*------------------------------------------------
+fin estilos input respuestas
+------------------------------------------------*/
+
+#foto_perfil_respuesta {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-left: 3px;
+}
+
+#responder {  
+    box-shadow: none;
+    border-radius: 10px;
+    background: #28254C;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#responder::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#responder:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#responder:focus {
+    border-color: #FE2E64;
+}
+
+#responder:not(focus) {
+    transition: all 0.3s;
+}
+#btn_respuesta {
+    font-size: 12px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 3px;
+    margin-left: 3px;
+    box-shadow: none;  
+}
+
+#btn_respuesta:hover {
+    background: #FE2E64;
+}
+
+#btn_respuesta:active {
+    transform: scale(0.97);
+}
+
+
+#caja_respuesta {
+    padding: 5PX 45px;
+}
+
+#text_respuesta {
+    text-align: center;
+}
+
+
+@media(max-width:768px){
+    #caja_post_index {
+        border:none;
+        margin-top: 0%;
+        margin-bottom: 0%;
+        box-shadow: none;
+        border-radius: 0%;
+        border-bottom: 1px solid #D8D8D8;
+    }
+    #caja_post_perfil {
+        border:none;
+        margin-top: 0%;
+        margin-bottom: 1%;
+        box-shadow: none;
+        border-radius: 0%;
+        border-bottom: 1px solid #D8D8D8;
+    }
+    #text_respuesta{
+        font-size: 12px;
+    }
+
+    #foto_perfil_respuesta{
+        width: 34px;
+        height: 34px;
+    }
+}
+
+#no_login_1 {
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 3px;
+    color: #fff;
+    background: #2E9AFE;
+}
+
+#no_login_1:hover {
+    transition: all 0.3s;
+    background: #0080FF;
+}
+
+#no_login_2 {
+    text-decoration: none;
+    padding: 4px;
+    border-radius: 3px;
+    color: #fff;
+    background:#04B404;
+}
+
+#no_login_2:hover {
+    transition: all 0.3s;
+    background: #088A08;
+}
+
+
+#message_no_login {
+    text-align: center;
+    background: orange;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #fff;
+    padding: 10px;
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+
+/**------------------------------------------------
+buttons like , dislike and coment
+--------------------------------------------------*/
+#grupo_btns_likes {
+    margin: auto;
+    margin-top: 8px;
+}
+
+#btn_like {
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    color: #fff;
+    margin-top: 15px;
+    background: #FE2E64;
+    box-shadow: none;
+}
+
+#btn_like:hover {
+    background: transparent;
+    color: #FE2E64;
+    border-color: #FE2E64;
+}
+
+#btn_like:not(:hover) {
+    transition: all 0.3s;
+}
+
+#btn_dislike {
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #FE2E64;
+    color: #FE2E64;
+    margin-top: 15px;
+    background: transparent;
+    box-shadow: none;
+}
+
+#btn_dislike:hover {
+    background: #FE2E64;
+    color: #fff;
+}
+
+#btn_dislike:not(:hover) {
+    transition: all 0.3s;
+}
+
+
+/**reespuestas y likes de comentarios*/
+
+#div_count_respuestas {
+    margin-top: 10px;
+    margin-bottom: 12px;
+    padding: 0px 45px;
+}
+
+#count_respuestas{
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#count_likes_comentarios {
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 5px;
+    text-decoration: none;
+    color: #848484;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}

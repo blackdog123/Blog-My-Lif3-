@@ -1,0 +1,10 @@
+<div class="">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-danger alert-dismissible text-center col-12 mx-auto" id="alerta_error_login" role="alert" >
+        <strong>{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}{% else %}{{ message.tags|title }} ! {% endif %}</strong> {{ message }}
+        <button type="button" id="btn_close" class="icon-cancel" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+</div>

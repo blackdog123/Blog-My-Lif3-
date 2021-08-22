@@ -1,0 +1,226 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+@media(min-width:767px) {
+    #all_content {
+        margin-top: 150px;
+    }
+}
+
+@media(max-width:767px) {
+    #all_content {
+        margin-top: 50px;
+    }
+}
+
+
+.border-md {
+    border-width: 2px;
+}
+
+#btn_facebook {
+    background: #405D9D;
+    border: none;
+}
+
+#btn_google {
+    background: red;
+    border: none;
+}
+
+#icons_box {
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px 0 0 10px;
+}
+
+i {
+    color: #fff;
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+
+
+#username {
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 11px 8px;
+    box-shadow: none;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#username::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+  
+
+#username:focus {
+    border-color: #FE2E64;
+  }
+  
+#username:not(focus) {
+    transition: all 0.3s;
+}
+  
+#nombre {
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 11px 8px;
+    box-shadow: none;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#nombre::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+  
+#nombre:focus {
+    border-color: #FE2E64;
+}
+
+#nombre:not(focus) {
+    transition: all 0.3s;
+}
+
+
+#apellido {
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 11px 8px;
+    box-shadow: none;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#apellido::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+  
+#apellido:focus {
+    border-color: #FE2E64;
+}
+
+#apellido:not(focus) {
+    transition: all 0.3s;
+}
+
+#email {
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 11px 8px;
+    box-shadow: none;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#email::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+  
+#email:focus {
+    border-color: #FE2E64;
+}
+
+#email:not(focus) {
+    transition: all 0.3s;
+}
+
+#password {
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 11px 8px;
+    box-shadow: none;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#password::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+  
+#password:focus {
+    border-color: #FE2E64;
+}
+
+#password:not(focus) {
+    transition: all 0.3s;
+}
+
+#passwordConfirmation {
+    font-size: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 11px 8px;
+    box-shadow: none;
+    border-radius: 0 10px 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+#passwordConfirmation::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+  
+#passwordConfirmation:focus {
+    border-color: #FE2E64;
+}
+
+#passwordConfirmation:not(focus) {
+    transition: all 0.3s;
+}
+
+#btn_registro {
+    background: #FE2E64;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+
+#btn_registro:hover {
+    background: transparent;
+    color: #FE2E64;
+    border-color: #FE2E64;
+  }
+  
+  #btn_registro:not(hover) {
+    transition: all 0.3s;
+  }
+
+#titulo {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+
+p { 
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#login {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+#login:hover {
+    transition: all 0.3s;
+    color: #FE2E64;
+    text-decoration: underline;
+}

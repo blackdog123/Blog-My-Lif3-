@@ -1,0 +1,38 @@
+{% if not request.user.is_authenticated %}
+
+
+{% else %}
+<div class="list-group container-fluid" id="list_user_index">
+    <h6 class="recomend_title">Sugerencias <a href="/usuarios" id="view_all_users">ver todo</a></h6>
+    {% for user in users %}
+    
+    {% if user.username != request.user.username  %}
+
+        {% if user not in request.user.profile.Following %}
+        <h5 class="card-title btn-group-lg" id="card_recomend_users">
+ 
+        <a id="user_name">
+            <img class="img-fluid" src="{{ user.profile.foto_perfil.url}}" id="img_user_index" alt="foto_perfil"> 
+            {% if user.profile.tipo_verificacion == 'Verificado' %}
+            @{{user.username}}<i class="icon-ok-circle" id="icon_verifique_recomended"></i>  
+            {% else %}
+            @{{user.username}} 
+            {% endif %}
+            <span>
+                <a href="{% url 'perfil' user.username %}" class="btn btn-primary" id="btn_view_profile" >Ver Perfil</a>
+            </span>
+        </a>
+
+        
+        </h5>
+        {% else %}
+
+        {% endif %}
+   
+    {% else %}
+
+    {% endif %}
+
+    {% endfor %}
+</div>
+{% endif %}

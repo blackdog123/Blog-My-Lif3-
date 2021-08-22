@@ -1,0 +1,257 @@
+/*
+----------------------------------------------------
+estilo configuración perfil
+----------------------------------------------------
+*/
+
+.formulario {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 110px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #332F63;
+
+}
+
+.titulo {
+    color: #fff;
+}
+
+label {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+
+#id_username {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#id_username:focus {
+    border-color: #FE2E64;
+}
+
+#id_username:not(focus) {
+    transition:  all 0.2s;
+}
+
+#id_first_name {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+#id_first_name:focus {
+    border-color: #FE2E64;
+}
+
+#id_first_name:not(focus) {
+    transition:  all 0.2s;
+}
+
+#id_last_name {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#id_last_name:focus {
+    border-color: #FE2E64;
+}
+
+#id_last_name:not(focus) {
+    transition:  all 0.2s;
+}
+
+#id_email {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#id_email:focus {
+    border-color: #FE2E64;
+}
+
+#id_email:not(focus) {
+    transition:  all 0.2s;
+}
+
+
+#id_password {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+#btn_save {
+    width: 40%;
+    margin: auto;
+    padding: 10px 5px;
+    border-radius: 30px;
+    background: #FE2E64;
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+
+#btn_save:hover {
+    background: transparent;
+    color: #FE2E64;
+    border-color: #FE2E64;
+}
+
+#btn_save:not(hover) {
+    transition: all 0.3s;
+}
+
+#btn_save:active {
+    transform: scale(97%);
+}
+
+@media(max-width:767px) {
+    #btn_save {
+        width: 100%;
+    }
+    .formulario {
+        margin-bottom: 15px;
+    }
+}
+
+
+
+/*
+----------------------------------------------------
+estilo formulario cambiar conmtraseña 
+----------------------------------------------------
+*/
+
+#id_old_password {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: #fff;
+}
+
+#id_old_password:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#id_old_password:focus {
+    border-color: #FE2E64;
+}
+
+#id_old_password:not(focus) {
+    transition:  all 0.2s;
+}
+
+
+#id_new_password1 {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: #fff;
+}
+
+#id_new_password1:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#id_new_password1:focus {
+    border-color: #FE2E64;
+}
+
+#id_new_password1:not(focus) {
+    transition:  all 0.2s;
+}
+
+
+#id_new_password2 {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background: #28254C;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    border-radius: 10px;
+    color: #fff;
+}
+
+#id_new_password2:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#id_new_password2:focus {
+    border-color: #FE2E64;
+}
+
+#id_new_password2:not(focus) {
+    transition:  all 0.2s;
+}
+
+
+#btn_chage_password {
+    width: 40%;
+    margin: auto;
+    padding: 10px 5px;
+    border-radius: 30px;
+    background: #FE2E64;
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+
+#btn_chage_password:hover {
+    background: transparent;
+    color: #FE2E64;
+    border-color: #FE2E64;
+}
+
+#btn_chage_password:not(hover) {
+    transition: all 0.3s;
+}
+
+#btn_chage_password:active {
+    transform: scale(97%);
+}

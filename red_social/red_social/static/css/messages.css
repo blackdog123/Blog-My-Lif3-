@@ -1,0 +1,91 @@
+/*---------------------------------------
+    estilos mensaje de error
+---------------------------------------*/
+
+#alerta_error {
+    background: #DF0101;
+    margin-top: 84px;
+    border: none;
+    width: 100%;
+    border-radius: 0%;
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+
+/*---------------------------------------
+    estilos mensaje de exito 
+---------------------------------------*/
+
+#alerta_succes {
+    background: #01DF74;
+    margin-top: 84px;
+    width: 100%;
+    border: none;
+    border-radius: 0%;
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+
+#alerta_succes_perfil {
+    background: #01DF74;
+    width: 100%;
+    border: none;
+    border-radius: 0%;
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+/*---------------------------------------
+    estilos boton cerrar mensaje 
+---------------------------------------*/
+
+#btn_close {
+    border: none;
+    color: #fff;
+    background: transparent;
+    box-shadow: none;
+}
+
+
+
+/*---------------------------------------
+    estilos mensaje error de login 
+---------------------------------------*/
+
+#alerta_error_login {
+    background: #DF0101;
+    border: none;
+    width: 100%;
+    border-radius: 0%;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+
+/*---------------------------------------
+    estilos mensaje success dashboard
+---------------------------------------*/
+
+#dash_success {
+    background: #01DF74;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+}
+

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load humanize %}
+    <link type="text/css" rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/Perfil.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/messages.css'%}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/fontello.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/google_font.css' %}">
+
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block tittle%}My Lif3{% endblock %}</title>
+</head>
+
+ 
+<body class="body">
+  <header>
+    {% include 'menu.html' %}
+  </header>
+  
+  {% include 'messages/succes_perfil.html' %}
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+
+  <div class="container all_perfil">
+
+    <a href="{{user.profile.foto_portada.url}}">
+
+      <img src="{{user.profile.foto_portada.url}}" class="img img-fluid" alt="..." id="foto_portada">
+
+    </a>
+
+      <div class="card social-prof" id="profile_index">
+          <div class="card-body">
+              <div class="wrapper">
+                <a href="{{user.profile.foto_perfil.url}}">
+                  <img src="{{user.profile.foto_perfil.url}}" alt="" class="user-profile img-thumbnail" id="img_profile">
+                </a>
+                {% if user.profile.tipo_verificacion == 'Verificado' %}
+                  <h3 id="username">{{user.username}}<i class="icon-ok-circle" id="icon_verifique_profile"></i></h3>
+                {% else %}
+                <h3 id="username">{{user.username}}</h3>
+                {% endif %}
+                  <p id="names">{{user.first_name}} {{user.last_name}}</p>
+              </div>
+              {% if user.username != request.user.username %}
+              
+
+              {% else %}
+              <div class="row">
+                  <div class="col-lg-12">
+                      <ul class=" nav nav-tabs justify-content-center s-nav">
+                          <li><a id="editar" href="{% url 'editar_perfil' user.profile.id %}">Editar Perfil</a></li>
+                          <li><a id="configuracion" href="{% url 'configuracion' user.pk %}">Configuración</a></li>
+                      </ul>
+                  </div>
+              </div>
+              {% endif %}
+
+              {% if request.user.is_authenticated %}
+              {% if user.username != request.user.username %}
+        
+              {% if user not in request.user.profile.Following %}
+              <div class="text-center">
+                <a href="{% url 'follow' user %}" id="btn_follow_unfollow">Seguir <span class="icon-heart"></span></a>
+              </div>  
+              {% else %}
+              <div class="text-center">
+                <a href="{% url 'unfollow' user %}" id="btn_follow_unfollow" onclick="return confirm ('¿ Seguro quieres dejar de Seguir a {{user.username}} ?');">Dejar de Seguir <span class="icon-heart-broken"></span></a>
+              </div>  
+              {% endif %}
+        
+              {% endif %}
+            {% endif %}
+
+          </div>
+          <br>
+      </div>
+
+      <div class="row box_estadistic">
+          <div class="col-lg-12">
+              <div class="card" id="profile_info_card">
+                  <div class="card-body info-card social-about">
+                   
+                      <h4><strong>Biografía</strong></h4>
+                      <p>{{user.profile.bio}}</p>
+                      <h4 class="mb-3"><strong>Información</strong></h4>
+                      <div class="row">
+
+                          <div class="col-4" title="Publicaciones">
+                              <div class="social-info">
+                                  <i class="icon-upload" id="icons"></i>
+                                <span>( {{user.posts.count}} )</span>
+                              </div>
+                          </div>
+                      
+                          <div class="col-4" title="Seguidos">
+                            <div class="social-info">
+                                <i class="icon-user" id="icons"></i>
+                                <span>( {{user.profile.Following.count}} )</span>
+                            </div>
+                          </div>
+
+                            <div class="col-4" title="Seguidores">
+                              <div class="social-info">
+                                  <i class="icon-users" id="icons"></i>
+                                  <span>( {{user.profile.Followers.count}} )</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% load humanize %}
+        {% for post in posts %}
+        <div class="col">       
+          <div class="card h-100" id="card_post_profile">
+            
+          <div class="card-body">   
+            <h5 class="card-title btn-group-lg">
+              <img class="img-fluid" src="{{ post.user.profile.foto_perfil.url}}" id="foto_perfil_post" alt="foto_perfil"> 
+
+              {% if post.user.profile.tipo_verificacion == 'Verificado' %}
+
+              <a id="autor" href="{% url 'perfil' post.user.username %}">
+                {{post.user.username}}<span><i class="icon-ok-circle disabled" id="icon_verifique"></i>
+              <time data-time="#" id="tiempo" ><span class="icon-clock"></span>{{ post.fecha_creacion|naturaltime }}</time></span></a>
+
+              {% else %}
+
+              <a id="autor" href="{% url 'perfil' post.user.username %}">
+                {{post.user.username}}<span>
+                <time data-time="#" id="tiempo" ><span class="icon-clock"></span>{{ post.fecha_creacion|naturaltime }}</time></span></a>
+
+              {% endif %}
+              
+              {% if user.username == request.user.username %}
+              <!-- Default dropstart button -->
+              <div class="btn-group dropstart" style="float: right;">
+                <button type="button" class="btn btn-secondary" id="btn_option_post" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="icon-cog-alt"></i>
+                </button>
+                <ul class="dropdown-menu" id="opciones_post_drop">
+                  <li><a class="dropdown-item" href="{% url 'editar_post' post.pk %}" id="btn_update"><span class="icon-edit-1"></span> Editar Post</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'eliminar_post' post.pk %}" id="btn_delete"><span class="icon-trash-2"></span> Eliminar Post</a></li>  
+                </ul>
+              </div>
+              {% else %}
+             
+              {% endif%}
+
+            </h5>          
+          </div>
+
+          <div class="container">
+            <p class="card-text" id="texto">{{post.texto}}</p>
+          </div>
+            {% if post.imagen %}
+            <a href="{{post.imagen.url}}">
+              <img src="{{post.imagen.url}}" class="card-img-top" alt="..." id='post_image'>
+            </a>
+          
+            {% elif post.video  %}
+            <video src="{{post.video.url}}" id="video" controls="" loop="" class="video-fluid">
+              <source src="{{post.video.url}}" type="video/mp4">
+            </video>
+            {% endif %}
+
+            <div class="card-body">
+                
+              <div class="group " id="div_count">
+                <a href="{% url 'comentarios' post.pk %}" id="count" title="me gusta">{{post.likes.count}} <span class="icon-thumbs-up-alt"></span></a>
+                <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">{{post.comments.count}} <span class="icon-comment-inv"></span></a>
+                <!--
+                <a href="{% url 'comentarios' post.pk %}" id="count" title="comentarios">100 <span class="icon-reply-all-1"></span></a>
+                -->
+              </div>         
+            </div>
+          </div>
+        </div>
+
+     
+      
+        {% endfor %}
+      </div>
+  </div>
+  <br>
+</body>
+</html>
+
+
